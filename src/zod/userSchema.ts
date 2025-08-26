@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 const userSchema = z.object({
-  name: z.string().min(1, "Name is required"),
+  username: z.string().min(1, "Username is required"),
   age: z.number().int().min(0),
-  email: z.string().email(),
+  email: z.email(),
 });
 
 export { userSchema };
