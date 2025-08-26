@@ -40,7 +40,7 @@ router.post("/", async (req: Request, res: Response) => {
   }
 
   const user = {
-    name: result.data.name,
+    username: result.data.username,
     age: result.data.age,
     email: result.data.email,
   } as typeof usersTable.$inferInsert;
