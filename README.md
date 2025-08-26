@@ -18,18 +18,24 @@ cd express-template
 pnpm i
 ```
 
-## ⚙️ Environment Variables
+## ⚙️ Environment variables
 
 Rename .env.examples to .env and set all required environment variables
 
-## 🗄️ Database Setup (Drizzle + Postgres)
+```bash
+DATABASE_URL=postgres://user:password@localhost:5432/mydb
+PORT=8000
+NODE_ENV=development
+```
+
+## 🗄️ Database setup (Drizzle + node-postgres)
 
 ```bash
 pnpm exec drizzle-kit generate
 pnpm exec drizzle-kit migrate
 ```
 
-## ▶️ Running the App
+## ▶️ Running the server
 
 - **Development**
 
@@ -43,3 +49,31 @@ pnpm dev
 pnpm build
 pnpm start
 ```
+
+## 🔒 Security
+
+- **Helmet** → secure HTTP headers
+- **CORS** → cross-origin resource sharing config
+- **express-rate-limit** → rate limiting
+
+## 📝 Logging
+
+- **Pino** for structured, JSON-friendly logs
+- Pretty printing in dev with **pino-pretty**
+- Request-level logging with **pino-http**
+
+## 🎨 Consistent code styling
+
+- **Prettier** for consistent formatting
+- Configured via .prettierrc
+- Run formatting:
+
+```bash
+pnpm format
+```
+
+## Future plans (coming soon)
+
+- 🐳 **Dockerize** the app for containerized deployment
+- ✉️ **Email magic link authentication** (passwordless login)
+- 🔑 **Google OAuth** authentication with Passport.js
