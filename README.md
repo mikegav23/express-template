@@ -4,6 +4,7 @@ A production-ready Node.js starter template featuring:
 
 - ⚡ **Express** with TypeScript
 - 🗄️ **Drizzle ORM + PostgreSQL**
+- ✅ **Zod** request validation
 - 📝 **Pino** structured logging
 - 🎨 **Prettier** for consistent formatting
 - 🛡️ Security with **Helmet**, **CORS**, and **express-rate-limit**
