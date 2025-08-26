@@ -56,6 +56,10 @@ pnpm start
 - **CORS** → cross-origin resource sharing config
 - **express-rate-limit** → rate limiting
 
+## ✅ Validation with Zod
+
+This project uses **Zod** for request validation. Schemas will be found in src/zod
+
 ## 📝 Logging
 
 - **Pino** for structured, JSON-friendly logs
