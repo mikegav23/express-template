@@ -2,6 +2,9 @@ import express, { Request, Response } from "express";
 import helmet from "helmet";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
+import userRouter from "./routes/users";
+import { pinoHttp } from "pino-http";
+import { logger } from "./utils/logger";
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -34,13 +37,21 @@ app.use(limiter);
 // Body parser
 app.use(express.json());
 
+app.use(pinoHttp({ logger }));
+
 // Prevent XSS attacks
 // app.use(xssClean());
 
 // Prevent HTTP parameter pollution
 // app.use(hpp());
 
-// ==================================
+// ========================
+
+// ====== ROUTES ======
+
+app.use("/users", userRouter);
+
+// ====================
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello, TypeScript Express!");

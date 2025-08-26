@@ -1,11 +1,50 @@
 import { Router, Request, Response } from "express";
+import { db } from "../db/db";
+import { usersTable } from "../db/schema";
+import { z } from "zod";
+import { userSchema } from "../zod/userSchema";
 
 const router = Router();
 
-// Example routes
 router.post("/", async (req: Request, res: Response) => {
-  const userData = req.tasks.push(task);
-  res.status(201).json(task);
+  req.log.info({ body: req.body }, "Incoming create user request");
+
+  // Validate body
+  const result = userSchema.safeParse(req.body);
+
+  if (!result.success) {
+    const formattedError = z.treeifyError(result.error);
+
+    req.log.warn({ error: formattedError }, "Validation failed");
+
+    return res.status(400).json({
+      error: "Invalid request data",
+      details: formattedError,
+    });
+  }
+
+  const user = {
+    name: result.data.name,
+    age: result.data.age,
+    email: result.data.email,
+  } as typeof usersTable.$inferInsert;
+
+  try {
+    await db.insert(usersTable).values(user);
+
+    req.log.info({ user }, "User inserted into database");
+
+    return res.status(201).json({
+      message: "User created successfully",
+      user,
+    });
+  } catch (error) {
+    req.log.error({ err: error }, "Database insert failed");
+
+    return res.status(500).json({
+      error: "Failed to insert user into database",
+    });
+  }
 });
 
 export default router;
