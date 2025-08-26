@@ -6,6 +6,22 @@ import { userSchema } from "../zod/userSchema";
 
 const router = Router();
 
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const users = await db.select().from(usersTable);
+
+    req.log.info("Users fetched from database");
+
+    return res.status(201).json({ users });
+  } catch (error) {
+    req.log.error({ err: error }, "Database select failed");
+
+    return res.status(500).json({
+      error: "Failed to fetch users from database",
+    });
+  }
+});
+
 router.post("/", async (req: Request, res: Response) => {
   req.log.info({ body: req.body }, "Incoming create user request");
 

@@ -31,9 +31,17 @@ NODE_ENV=development
 
 ## 🗄️ Database setup (Drizzle + node-postgres)
 
+Configure your schema (src/db/schema.ts) and use `generate` to generate migration files and `migrate` to execute the migration, like the example below:
+
 ```bash
 pnpm exec drizzle-kit generate
 pnpm exec drizzle-kit migrate
+```
+
+Drizzle comes equipped with **Drizzle Studio** a web based UI interface to visualize your database. To use it run:
+
+```bash
+pnpm exec drizzle-kit studio
 ```
 
 ## ▶️ Running the server
