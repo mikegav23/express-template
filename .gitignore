@@ -1,0 +1,7 @@
+node_modules
+drizzle
+
+*.env
+!.env.example
+
+*.http
