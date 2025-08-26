@@ -34,14 +34,14 @@ NODE_ENV=development
 Configure your schema (src/db/schema.ts) and use `generate` to generate migration files and `migrate` to execute the migration, like the example below:
 
 ```bash
-pnpm exec drizzle-kit generate
-pnpm exec drizzle-kit migrate
+pnpm drizzle-kit generate
+pnpm drizzle-kit migrate
 ```
 
 Drizzle comes equipped with **Drizzle Studio** a web based UI interface to visualize your database. To use it run:
 
 ```bash
-pnpm exec drizzle-kit studio
+pnpm drizzle-kit studio
 ```
 
 ## ▶️ Running the server

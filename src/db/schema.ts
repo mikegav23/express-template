@@ -1,9 +1,12 @@
-import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
+import { integer, pgTable, varchar, text } from "drizzle-orm/pg-core";
+import { createId } from "@paralleldrive/cuid2";
 
-// Example model
+// Example
 export const usersTable = pgTable("users", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: varchar({ length: 255 }).notNull(),
+  id: text("id")
+    .primaryKey()
+    .$default(() => createId()),
+  username: varchar({ length: 255 }).notNull().unique(),
   age: integer().notNull(),
   email: varchar({ length: 255 }).notNull().unique(),
 });
